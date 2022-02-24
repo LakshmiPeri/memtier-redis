@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-benchmark
+spec:
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  selector:
+    matchLabels:
+      app: redis-benchmark
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: redis-benchmark
+    spec:
+# comment out the following lines if you want to limit the pod scheduling on a specific pool
+#      nodeSelector:
+#        cloud.google.com/gke-nodepool: default-pool
+      containers:
+      - name: benchmark
+        image: redislabs/memtier_benchmark #:b1b1d10
+        args: ["-a", "$(REDIS_PASSWORD)", "-s", "$(REDIS_SERVER)", "-p", "$(REDIS_PORT)","--pipeline=2", "--clients=4", "--threads=5", "--test-time=600"]
+        resources:
+          limits:
+            cpu: "100m"
+            memory: "128Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+        env:
+         - name: REDIS_PORT
+           value: "14000"
+         - name: REDIS_SERVER
+           value: "172.30.94.228"
+         - name: REDIS_PASSWORD
+           value: "8ZSrzIK1"
