@@ -1,6 +1,6 @@
 # How to run memtier on k8s
 
-## Multple Options
+## Choices, Choices, Choices
 The following are mutliple options of running memtier and testing latency. 
 1. Run memtier from laptop. Enable port-forward to database service. 
 2. Login to the least busy pod and run memtier. 
