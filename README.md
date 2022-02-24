@@ -3,7 +3,7 @@
 ## Multple Options
 The following are mutliple options of running memtier and testing latency. 
 1. Run memtier from laptop. Enable port-forward to database service. 
-2. Login to the least busy node run memtier. 
+2. Login to the least busy pod and run memtier. 
 3. Run memtier workload in kubernetes cluster. This also allows ability to run paralle memtier workloads increasing load. 
 
 ## Required configurations
@@ -17,7 +17,7 @@ The following are mutliple options of running memtier and testing latency.
    ```
    rladmin bind db <db_name> endpoint <endpoint id> policy <all-master-shards|all-nodes>
    ```
-## . Run a Workload in Kubernetes. 
+## Run a Workload in Kubernetes. 
 
 <a href="workload"></a>
 It's time to test your deployment. You can use the redis benchmarking tool `memtier_benchmark` <a href="https://github.com/RedisLabs/memtier_benchmark" _target="blank">[link]</a>. Here are a couple of examples deployment manifests: 
